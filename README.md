@@ -1,6 +1,6 @@
 # Exercises
 
-A collection of exercises I've worked on from places like [Codewars](https://codewars.com).
+A collection of solutions for coding exercises found on sites like [Codewars](https://codewars.com).
 
 Every exercise directory contains `[exercise].js`, `[exercise].test.js`, and a `[exercise].md` with a summary of the problem statement, what I had learned through the exercise, and other solutions that I found informative.
 
