@@ -4,7 +4,7 @@ This is a [Codewars](https://codewars.com) algorithm exercise, ranked as `5 kyu`
 
 [View on Codewars](https://codewars.com/kata/526989a41034285187000de4)
 
-# Summary
+## Summary
 
 Receive two IPv4 addresses as inputs and return the number of addresses between them (including the first, excluding the last). Assume all inputs are valid IPv4 strings and that the last address is greater than the first.
 
