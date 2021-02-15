@@ -2,7 +2,7 @@
 
 This is a [Codewars](https://codewars.com) algorithm exercise, ranked as `5 kyu`, where `kyu` ranks 1-8 are in order of difficulty, `1 kyu` being the most difficult.
 
-[View the entire problem statement.](https://www.codewars.com/kata/550f22f4d758534c1100025a)
+[View on Codewars](https://codewars.com/kata/550f22f4d758534c1100025a)
 
 ## Summary
 
