@@ -1,0 +1,3 @@
+# Josephus Permutation
+
+Write me.

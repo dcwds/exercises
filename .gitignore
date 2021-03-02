@@ -5,3 +5,4 @@ node_modules
 # incomplete exercises
 /src/bird-mountain
 /src/merge-string-checker
+/src/sudoku-solver
