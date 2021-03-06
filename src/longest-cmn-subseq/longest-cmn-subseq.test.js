@@ -9,7 +9,7 @@ describe("longest-cmn-subseq", () => {
     expect(LCS("abc", "ac")).toBe("ac")
   })
 
-  it.only("solves correctly 3", () => {
+  it("solves correctly 3", () => {
     expect(LCS("anothertest", "notatest")).toBe("nottest")
   })
 

@@ -1,23 +1,20 @@
 function LCS(x, y) {
-  let res = []
-  let prevIdx = 0
+  let res = ""
   let idx = 0
+  let prevIdx = -1
 
-  for (; idx < x.length; idx++) {
+  for (; idx < y.length; idx++) {
     let val = y[idx]
+    let valIdx = x.indexOf(val, prevIdx + 1)
 
-    console.log(`val: ${val}, curr: ${idx}, prev: ${idx}`)
+    if (valIdx > -1) {
+      res += val
 
-    if (x.indexOf(val) > prevIdx) {
-      console.log(val)
-      res = [...res, val]
-      prevIdx = idx
-    } else {
-      console.log(val)
+      prevIdx = valIdx
     }
   }
 
-  return res.join("")
+  return res
 }
 
 module.exports = LCS
