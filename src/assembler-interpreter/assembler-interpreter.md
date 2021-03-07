@@ -1,3 +1,0 @@
-# Assembler Interpreter
-
-Write me.
