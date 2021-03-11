@@ -51,7 +51,7 @@ function whoEatsWho(zoo) {
     }
   } while (edible.some((v) => v === true))
 
-  res.push(...zooArr)
+  res.push(zooArr.join(","))
 
   return res
 }
