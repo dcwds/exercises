@@ -37,7 +37,23 @@ describe("write-out-numbers", () => {
     expect(number2words(888)).toBe("eight hundred eighty-eight")
   })
 
-  it.only("solves correctly 10", () => {
+  it("solves correctly 10", () => {
     expect(number2words(1000)).toBe("one thousand")
+  })
+
+  it("solves correctly 11", () => {
+    expect(number2words(19777)).toBe(
+      "nineteen thousand seven hundred seventy-seven"
+    )
+  })
+
+  it("solves correctly 12", () => {
+    expect(number2words(999999)).toBe(
+      "nine hundred ninety-nine thousand nine hundred ninety-nine"
+    )
+  })
+
+  it("solves correctly 13", () => {
+    expect(number2words(1003)).toBe("one thousand three")
   })
 })

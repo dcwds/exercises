@@ -1,13 +1,4 @@
-// supports numbers 0-999999
-
-// n -> Array of Strings
-// If length is greater than 2 (thousands position), split into two Arrays (888888 -> ["8", "8", "8"], ["8", "8", "8"])
-// Array length determines number position
-// e.g. length of 2 (["8", "8", "8"])
-// - skip zeroes unless Array length of zero
-// - 8 -> template {n} hundred -> find 8 in numbers map and access its value circularly given current Array length (2, therefore eight) -> "eight hundred"
-
-const numbersMap = {
+const numWords = {
   0: ["zero"],
   1: ["one", "ten"],
   2: ["two", "twenty"],
@@ -29,67 +20,67 @@ const numbersMap = {
   19: ["nineteen"]
 }
 
-function getQueue(n) {
-  let queue = []
+const placeValues = {
+  2: "hundred",
+  3: "thousand",
+  5: "hundred"
+}
 
-  n = String(n).split("")
-
-  if (n.length > 3) {
-    queue.push(n.slice(0, n.length - 3), n.slice(n.length - 3))
-  } else {
-    queue.push(n)
-  }
-
-  return queue
+const placeToWords = {
+  0: 0, // ones
+  1: 1, // tens
+  2: 0, // hundreds
+  3: 0, // thousands
+  4: 1, // tens of thousands
+  5: 0 // hundreds of thousands
 }
 
 function getWords(curr, next, len) {
-  let vals = numbersMap[curr]
-  let res = vals[((len % vals.length) + vals.length) % vals.length]
+  let vals = numWords[curr]
 
-  switch (len) {
-    case 2:
-      return `${res} hundred `
-    case 1:
-      return next !== "0" ? (res += "-") : res
-    default:
-      return res
-  }
+  if ((len === 1 || len === 4) && next !== "0")
+    return vals[placeToWords[len]] + "-"
+  else return vals[placeToWords[len]]
 }
 
 function number2words(n) {
-  if (numbersMap[n]) {
-    return numbersMap[n][0]
+  if (numWords[n]) {
+    return numWords[n][0]
   }
 
+  n = String(n).split("")
+
   let res = ""
+  let skipNext = false
 
-  // Make queue from number, splitting at hundredth position.
-  let queue = getQueue(n)
+  while (n.length) {
+    let curr = n.shift()
+    let next = n[0]
+    let len = n.length
+    let placeValue = placeValues[len] ? ` ${placeValues[len]} ` : ""
 
-  while (queue.length) {
-    let num = queue.shift()
+    // Handle skip cases
+    if (skipNext || curr === "0") {
+      skipNext = false
 
-    while (num.length) {
-      let curr = num.shift()
-      let next = num[0]
-
-      // Skip zeroes
-      if (curr === "0") {
-        continue
+      // If the remainder of n is not all zeroes, append placeValue.
+      if (n.filter((v) => v === "0").length !== n.length) {
+        res += placeValue
       }
 
-      // Solve numbers between 11-19
-      else if (num.length < 2 && numbersMap[curr + next]) {
-        res += numbersMap[curr + next][0]
+      continue
+    }
 
-        break
-      }
+    // Solve numbers between 11-19
+    else if ((len === 1 || len === 4) && numWords[curr + next]) {
+      skipNext = true
+      res += numWords[curr + next][0]
+    }
 
-      // Solve the rest
-      else {
-        res += getWords(curr, next, num.length)
-      }
+    // Solve the rest
+    else {
+      res += getWords(curr, next, len)
+      res += placeValue
     }
   }
 
